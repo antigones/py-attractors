@@ -55,10 +55,12 @@ B = 8/3
 solutions = list()
 
 N_SOL = 5
+delta = 0
 for i in range(N_SOL):
+    start_state = [1+delta,1+delta,1+delta]
     sol = solve_ivp(lorenz_eq, t_interval, start_state, args=(S,R,B))
     solutions.append(sol)
-    R = R + 0.01
+    delta = delta + 0.001
 
 colors = cmap(np.linspace(0, 1, N_SOL))
 # draw(solutions=solutions,colors=colors,filename='lorenz_changing_r.png')
