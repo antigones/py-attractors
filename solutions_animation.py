@@ -3,9 +3,10 @@ from matplotlib import animation
 
 class SolutionAnimation:
 
-    def __init__(self, solutions, labels):
+    def __init__(self, solutions, labels, interval=2000):
         self.solutions = solutions
         self.labels = labels
+        self.interval = interval
         plt.figure(clear=True).add_subplot()
         self.fig, self.ax = plt.subplots()
 
@@ -18,9 +19,9 @@ class SolutionAnimation:
         return p
 
     def animate(self):
-        anim = animation.FuncAnimation(fig=self.fig, func=self.update, frames=len(self.solutions), interval=1000)
+        anim = animation.FuncAnimation(fig=self.fig, func=self.update, frames=len(self.solutions), interval=self.interval)
         plt.show()
 
     def save_animation(self, filename):
-        anim = animation.FuncAnimation(fig=self.fig, func=self.update, frames=len(self.solutions), interval=1000)
+        anim = animation.FuncAnimation(fig=self.fig, func=self.update, frames=len(self.solutions), interval=self.interval)
         anim.save(filename)
